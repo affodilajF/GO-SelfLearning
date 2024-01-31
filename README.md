@@ -164,9 +164,19 @@ result.type untuk menggambil tipe datanya.
 
   How cara membuatnya?
   - Operator &
+
+    Ada sebuah struct Address.
+    
+    ![image](https://github.com/affodilajF/GO-SelfLearning/assets/130672181/2e414e4a-9d80-4484-97f6-cb4a09741857)
+
     Untuk membuat sebuah variabel dengan nilai pointer ke variabel lain.
     ![image](https://github.com/affodilajF/GO-SelfLearning/assets/130672181/bff77ce4-4eef-4355-a7dc-a9b5565d944d)
     ![image](https://github.com/affodilajF/GO-SelfLearning/assets/130672181/175683eb-8300-4bff-9e82-3fe838dded0e)
+
+    Si variabel yang berlaku sebagai pointer akan memiliki *. Artinya address2 bertipe data pointer struct Address.
+
+    ![image](https://github.com/affodilajF/GO-SelfLearning/assets/130672181/ba70aabc-38de-459e-8b36-8a8e4dd42b82)
+
 
 # ASTERISK OPERATOR ------------------
 Operator bintang. 
@@ -182,40 +192,62 @@ Efeknya, address1 dan addres2 tidak memiliki ikatan apapun lagi.
 ![image](https://github.com/affodilajF/GO-SelfLearning/assets/130672181/46519083-d95f-457c-8656-3075f8f31ada)
 
 - DENGAN OPERATOR *
-Agar ikatan address1 dan address2. Jadi ketika address2 ganti data, address1 juga ikut keganti.
+Agar ikatan address1 dan address2 terjaga. Jadi ketika address2 ganti data, address1 juga ikut keganti.
+
+address1 := Address{'lama','lama'}
+address2 := &address1
+*address2 = Address{'baru','baru'}
+
+Nantinya, baik address1 dan 2 akan refer ke memori data yang sama. 
 
 ![image](https://github.com/affodilajF/GO-SelfLearning/assets/130672181/378b043a-ac38-40eb-907f-611d181693f7)
 
 ![image](https://github.com/affodilajF/GO-SelfLearning/assets/130672181/fbbdca46-5e74-43b4-9eae-e4d3a468ef63)
 
-# OPERATOR NEW 
+# OPERATOR NEW ------------------
 Alternatif lain pointer by ref selain pakai &.
 ![image](https://github.com/affodilajF/GO-SelfLearning/assets/130672181/6359f1a4-7857-47a1-a334-794872ae5fc2)
-![image](https://github.com/affodilajF/GO-SelfLearning/assets/130672181/72a608db-c6b7-4e4e-942f-611a2a2771e7)
+
+alamat1 adalah pointer menuju new(Address) yang merupakan data yang baru di-assign. alamat2 adalah pointer menuju alamat1. 
+
+![image](https://github.com/affodilajF/GO-SelfLearning/assets/130672181/18e21a55-bb4c-4b23-9f1e-e4c27d2cb7b5)
+![image](https://github.com/affodilajF/GO-SelfLearning/assets/130672181/63f28627-c2b1-447f-938c-5cee061ca3e9)
 
 
+Hasilnya : 
+
+![image](https://github.com/affodilajF/GO-SelfLearning/assets/130672181/9bdf746e-e660-450e-8db2-32a78d5c6f41)
 
 
+# POINTER DI FUNCTION 
+By default, parameter akan pass by value. 
 
+How to make params pass by ref? 
+## using pointer
+Untuk menjadikan sebuah parameter sebagai pointer, kita bisa menggunakan operator * di parameternya. 
 
-
-
-
-
-
-
-
-
+- pass by value
   
+![image](https://github.com/affodilajF/GO-SelfLearning/assets/130672181/517f0db9-9274-4820-b155-64897b55ad77)
+
+![image](https://github.com/affodilajF/GO-SelfLearning/assets/130672181/cb2ceac6-6b77-4138-8042-f5deed4ac615)
+
+- pass by ref
   
+  Ubah address menjadi sebuah pointer.
   
+![image](https://github.com/affodilajF/GO-SelfLearning/assets/130672181/83584ca0-775f-42e7-9629-1da498eb7b6b)
 
-  
+atau jika sudah terlanjur membuat address bukan sebuah pointer, gunakan cara : 
 
+![image](https://github.com/affodilajF/GO-SelfLearning/assets/130672181/341936ff-b3b4-49a0-a5f2-9f4e0ad16b74)
 
+Nanti hasil print nya adalah INDONESIA. 
 
-  
+# POINTER DI METHOD
+![image](https://github.com/affodilajF/GO-SelfLearning/assets/130672181/7a4f9f80-b139-4235-b0a1-d2562183610e)
 
+By default, 
 
 
 
