@@ -47,7 +47,7 @@
 - Sending is faster than receiving. Wdym?
 - For instance, we have 2 activity to send-receive a data from 1 channel.
 
-  If its ordinary channel, sending data in 2nd processes is faster than receiving data in 1st processes, so the 2nd sending processes is ikutan lambat juga.
+  If its ordinary channel, and if sending data in 2nd processes is faster than receiving data in 1st processes, the 2nd sending processes will be ikutan lambat juga.
   Tackle? use buffered channel!
 - Buffer is to accomondate quequed data in channel.
 
@@ -77,21 +77,51 @@
 - Salah satu solusi : use perulangan range ketika menerima data dari channel.
 - When close() is invoked, automatically the loop is stopped.
 - This is simpler than manually checking the channel.
-
-- ![image](https://github.com/affodilajF/GO-SelfLearning/assets/130672181/35f58cac-ab2f-4c68-92b5-bdd51769c293)
+  ![image](https://github.com/affodilajF/GO-SelfLearning/assets/130672181/35f58cac-ab2f-4c68-92b5-bdd51769c293)
 
 ## Select Channel
 - Theres a case, ketika kita membuat beberapa channel dan menjalankan beberapa goroutine. Lalu kita ingin mendaptkan semua data dari channel tsb.
 - Untuk melakukan ini, kita bisa menggunakan select channel di Go-Lang.
 
 - Dengan select channel, kita bisa memilih data tercepat dari beberapa channel. Jika data datang bersamaan di beberapa channel, maka akan dipilih secara random.
-- Select cuma bisa pilih 1 channe;, by default.
+- 1 select cuma bisa pilih 1 channel, by default.
+  ![image](https://github.com/affodilajF/GO-SelfLearning/assets/130672181/24ed383d-e704-4f64-a977-017fc1049a11)
+- Biar bisa ngambil> 1 data, pakai for. Tapi jangan lupa loopnya di stop, ntar deadlock.
+  ![image](https://github.com/affodilajF/GO-SelfLearning/assets/130672181/6c30cade-2953-4e96-adff-0e83168f7f04)
 
-## Race Condition 
-## sync Mutex 
-## sync RWMutex 
-## Deadlock 
-## sync WaitGroup
+#### Default Select 
+- If theres no data inside channel but you have made select channel statement, it will result in a deadlock.
+- DEFAULT statement will be executed if all the channel have no data (in possesion of waiting the data). 
+  ![image](https://github.com/affodilajF/GO-SelfLearning/assets/130672181/9540c8a8-402a-44bf-a7a5-44fc7066b9e6)
+
+  ![image](https://github.com/affodilajF/GO-SelfLearning/assets/130672181/637556b8-eb6a-4a63-9e12-70f2009d0ebd)
+
+# Race Condition 
+- Penyebab => sharing variabel yang diakses dan diubah oleh banyak goroutine.
+
+  Karena ada paralel, nilai x bisa diakses 2x secara bersamaan dan paralel. Balapan mereka. 
+  ![image](https://github.com/affodilajF/GO-SelfLearning/assets/130672181/844cb9ad-72be-4e69-8826-a0325689d5eb)
+
+### CARA MENGATASI RACE CONDITION : 
+### sync Mutex 
+- Adalah sebuah struct
+- To locking and unlocking
+- If several gotoutines try to lock a Mutex simultaneously, only ONE goroutine will be allowed. Once the goroutine that acquired the lock has finished its operation and unlock the Mutex, the next goroutine is allowed to lock it.
+- ![image](https://github.com/affodilajF/GO-SelfLearning/assets/130672181/d5e90d31-4bca-491b-8991-28cb46a94b18)
+
+### sync RWMutex (Read Write Mutex)
+- Have 2 lock => Read lock and Write lock
+- ![image](https://github.com/affodilajF/GO-SelfLearning/assets/130672181/b38a7a22-db08-41ad-b9cb-176bab4ee58c)
+
+# Deadlock 
+- Hati-hati pas bikin aplikasi yang paralel atau concurrent!
+- Deadlock occurs when goroutine processes are waiting for each other's locks, preventing any goroutine from running.
+- 
+
+
+
+
+### sync WaitGroup
 ## sync Pool
 ## sync Map 
 ## sync Cond
