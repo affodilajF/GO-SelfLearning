@@ -116,13 +116,35 @@
 # Deadlock 
 - Hati-hati pas bikin aplikasi yang paralel atau concurrent!
 - Deadlock occurs when goroutine processes are waiting for each other's locks, preventing any goroutine from running.
+  
+### sync WaitGroup (nah ini dipake in real project)
+- Go's feature, allows to wait concurent processes to be done.
+- Goroutine will be executed and waited for until all of them have finished. 
+- Biasanya km pake thread sleep kan, tp itu ngira2 brp detik, jlek, mending pake ini yaaa.
+- Add(int) method => to mark theres an goroutine processes
+- Done() method => after goroutine processes have been finished/done.
+- Wait() method => to wait all the processes done.
+- ![image](https://github.com/affodilajF/GO-SelfLearning/assets/130672181/d26b720f-5211-469a-84c5-efb914a67f42)
 - 
 
+### sync.Once 
+- To make sure exact function is only once executed
+- Berapapun goro yg mau coba akses, cuma yang awal doang yang boleh
+- ![image](https://github.com/affodilajF/GO-SelfLearning/assets/130672181/d6a67221-1465-4e47-9806-5a6f7416406a)
 
+## sync Pool 
+- implementation of design pattern Object Pool Pattern (emg d khususkan untuk concurent and paralel)
+- DesPat ini untuk menyimpan data, selanjutnya untuk menggambil datanya bisa dari Pool, setelah slesai menggunakan datanya, balikin lagi ke Poolnya
+- This implementation is far from being threatened by race conditions
+- Biasanya dipake buat koneksi db (biar ga berkali2 konek ke db, mahal)
+- put => masukkin data
 
+  get => ambil data
+  
+   ![image](https://github.com/affodilajF/GO-SelfLearning/assets/130672181/2ad56d41-fbcd-424f-83d9-400401269d57)
 
-### sync WaitGroup
-## sync Pool
+  
+  
 ## sync Map 
 ## sync Cond
 ## atomic
