@@ -1,0 +1,14 @@
+branch : 
+- Fundamental (done)
+- Goroutine (done)
+- Context (almost)
+- MySql
+- Logging
+- Embed
+- Web
+- Http router
+- DI
+- Generics
+- Validation
+- Rest Api (have tried)
+- Redis
